@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
 function HomeComponent() {
   return (
     <div>
-      <h3>Welcome Home!</h3>
+      <h3>Tanstack + Tauri Template</h3>
     </div>
   );
 }

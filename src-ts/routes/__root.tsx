@@ -12,7 +12,7 @@ function RootComponent() {
         <Link to="/" activeOptions={{ exact: true }}>
           Home
         </Link>{" "}
-        <Link to="/about">About</Link>
+        <Link to="/tauri-example">Tauri Example</Link>
       </div>
       <hr />
       <Outlet />
