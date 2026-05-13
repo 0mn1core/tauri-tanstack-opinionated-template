@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TauriExampleRouteImport } from './routes/tauri-example'
+import { Route as StorePersistanceRouteImport } from './routes/store-persistance'
+import { Route as RustFunctionRouteImport } from './routes/rust-function'
 import { Route as IndexRouteImport } from './routes/index'
 
-const TauriExampleRoute = TauriExampleRouteImport.update({
-  id: '/tauri-example',
-  path: '/tauri-example',
+const StorePersistanceRoute = StorePersistanceRouteImport.update({
+  id: '/store-persistance',
+  path: '/store-persistance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RustFunctionRoute = RustFunctionRouteImport.update({
+  id: '/rust-function',
+  path: '/rust-function',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +31,48 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tauri-example': typeof TauriExampleRoute
+  '/rust-function': typeof RustFunctionRoute
+  '/store-persistance': typeof StorePersistanceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tauri-example': typeof TauriExampleRoute
+  '/rust-function': typeof RustFunctionRoute
+  '/store-persistance': typeof StorePersistanceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/tauri-example': typeof TauriExampleRoute
+  '/rust-function': typeof RustFunctionRoute
+  '/store-persistance': typeof StorePersistanceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tauri-example'
+  fullPaths: '/' | '/rust-function' | '/store-persistance'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tauri-example'
-  id: '__root__' | '/' | '/tauri-example'
+  to: '/' | '/rust-function' | '/store-persistance'
+  id: '__root__' | '/' | '/rust-function' | '/store-persistance'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TauriExampleRoute: typeof TauriExampleRoute
+  RustFunctionRoute: typeof RustFunctionRoute
+  StorePersistanceRoute: typeof StorePersistanceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tauri-example': {
-      id: '/tauri-example'
-      path: '/tauri-example'
-      fullPath: '/tauri-example'
-      preLoaderRoute: typeof TauriExampleRouteImport
+    '/store-persistance': {
+      id: '/store-persistance'
+      path: '/store-persistance'
+      fullPath: '/store-persistance'
+      preLoaderRoute: typeof StorePersistanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rust-function': {
+      id: '/rust-function'
+      path: '/rust-function'
+      fullPath: '/rust-function'
+      preLoaderRoute: typeof RustFunctionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TauriExampleRoute: TauriExampleRoute,
+  RustFunctionRoute: RustFunctionRoute,
+  StorePersistanceRoute: StorePersistanceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

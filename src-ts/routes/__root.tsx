@@ -12,7 +12,8 @@ function RootComponent() {
         <Link to="/" activeOptions={{ exact: true }}>
           Home
         </Link>{" "}
-        <Link to="/tauri-example">Tauri Example</Link>
+        <Link to="/rust-function">Rust Function Example</Link>{" "}
+        <Link to="/store-persistance">Store Persistence Example</Link>
       </div>
       <hr />
       <Outlet />
