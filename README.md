@@ -5,7 +5,7 @@ This project is an attempt to create a reusable starter for a Tauri Native app u
 Front-end opinionated inclusions:
 
 - `typescript` - language
-- `bun` - package manager (no runtime as Tauri is the backend)
+- `pnpm` - package manager
 - `rsbuild` - build tool
 - `rstest` - testing tool
 - `biome` - linter/formatter
